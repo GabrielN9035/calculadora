@@ -1,0 +1,180 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1046{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\f0\fs22\lang22 from tkinter import *\par
+from tkinter import ttk\par
+import math\par
+\par
+\par
+#cores\par
+\par
+co1 = '#feffff'\par
+co2 = '#6f9fbd'\par
+co3 = "#021725"\par
+\par
+fundo = '#e8e6e6'\par
+co10 = "#000000"\par
+cor11 = "#000000"\par
+\par
+\par
+cor1= "#472ed1"\par
+cor2= '#ff333a'\par
+cor3= "#414141"\par
+cor4= "#525252"\par
+\par
+#janela\par
+\par
+janela = Tk()\par
+janela.title('')\par
+janela.geometry('235x289')\par
+janela.configure(bg=co1)\par
+\par
+Style = ttk.Style(janela)\par
+Style.theme_use("clam")\par
+1\par
+\par
+#frame\par
+\par
+ttk.Separator(janela, orient=HORIZONTAL).grid(row=0, columnspan=1, ipadx=280)\par
+\par
+\par
+Frame_score= Frame(janela, width=300, height=56, bg=co3, pady=0, padx=0, relief="flat",)\par
+Frame_score.grid(row=1,column=0, sticky=NW)\par
+\par
+Frame_cientifica= Frame(janela, width=300, height=86, bg=co3, pady=0, padx=0, relief="flat",)\par
+Frame_cientifica.grid(row=2,column=0, sticky=NW)\par
+\par
+Frame_quadros= Frame(janela, width=300, height=340, bg=fundo, pady=0, padx=0, relief="flat",)\par
+Frame_quadros.grid(row=3,column=0, sticky=NW)\par
+\par
+#fun\'e7\'f5es\par
+\par
+\par
+def entering_valures(event):\par
+    global all_valures\par
+    all_valures = all_valures + str(event)\par
+    value_text.set(all_valures)\par
+\par
+\par
+def calculate():\par
+    global all_valures\par
+    global texto\par
+    texto = all_valures\par
+\par
+    modulos = ['math.tam', 'math.sim', 'math.cos', 'math.sqrt', 'math.log',  'math.tam10', 'math.e', 'math.pow', 'math.pi', 'math.radian' ]\par
+   \par
+\par
+    for i in modulos:\par
+        if i == 'math.tam':\par
+            texto = texto.replace("tan", i)\par
+        if i == 'math.sim':\par
+            texto = texto.replace("sim", i)\par
+        if i == 'math.cos':\par
+            texto = texto.replace("cos", i)\par
+        if i == 'math.sqrt':\par
+            texto = texto.replace("log", i)\par
+        if i == 'math.log10':\par
+            texto = texto.replace("log10", i)\par
+        if i == 'math.e':\par
+            texto = texto.replace("e", i)\par
+        if i == 'math.pow':\par
+            texto = texto.replace("pow", i)\par
+        if i == 'math.pi':\par
+            texto = texto.replace("pi", i)\par
+        if i == 'math.radian':\par
+            texto = texto.replace("radian", i)\par
+\par
+    result = str(eval(texto))\par
+   \par
+    print(result)\par
+    print(texto)\par
+\par
+\par
+    value_text.set(result)\par
+    all_valures = ""\par
+\par
+def sream_clear():\par
+    global all_valures\par
+    all_valures = ""\par
+    value_text.set("")\par
+\par
+all_valures = ""\par
+\par
+value_text = StringVar()\par
+\par
+app_sream = Label(Frame_score, width=16, height=2, textvariable= value_text, padx=7, relief="flat", anchor="e", bd=0, justify=RIGHT, font=('Ivy 18'), bg='#37474f', fg=co1)\par
+app_sream.place(x=0, y=0)\par
+\par
+#buttons\par
+b_tan = Button(Frame_cientifica, text = "tan", width=6, height=1, bg=co10, fg=fundo, font=('lvy 10 bold'), relief=RAISED, overrelief=RIDGE, command=lambda:entering_valures('tan'))\par
+b_tan.place(x=0,y=1)\par
+b_sin = Button(Frame_cientifica, text = "sin", width=6, height=1, bg=co10, fg=fundo, font=('lvy 10 bold'), relief=RAISED, overrelief=RIDGE, command=lambda:entering_valures('sin'))\par
+b_sin.place(x=59,y=1)\par
+b_cos = Button(Frame_cientifica, text = "cos", width=6, height=1, bg=co10, fg=fundo, font=('lvy 10 bold'), relief=RAISED, overrelief=RIDGE, command=lambda:entering_valures('cos'))\par
+b_cos.place(x=118,y=1)\par
+b_sqrt = Button(Frame_cientifica, text = "sqrt", width=6, height=1, bg=co10, fg=fundo, font=('lvy 10 bold'), relief=RAISED, overrelief=RIDGE, command=lambda:entering_valures('sqrt'))\par
+b_sqrt.place(x=177,y=1)\par
+b_log = Button(Frame_cientifica, text = "log", width=6, height=1, bg=co10, fg=fundo, font=('lvy 10 bold'), relief=RAISED, overrelief=RIDGE, command=lambda:entering_valures('log'))\par
+b_log.place(x=0,y=30)\par
+b_log10 = Button(Frame_cientifica, text = "log10", width=6, height=1, bg=co10, fg=fundo, font=('lvy 10 bold'), relief=RAISED, overrelief=RIDGE, command=lambda:entering_valures('log10'))\par
+b_log10.place(x=59,y=30)\par
+b_euler = Button(Frame_cientifica, text = "e", width=6, height=1, bg=co10, fg=fundo, font=('lvy 10 bold'), relief=RAISED, overrelief=RIDGE, command=lambda:entering_valures('e'))\par
+b_euler.place(x=118,y=30)\par
+b_pow = Button(Frame_cientifica, text = "pow", width=6, height=1, bg=co10, fg=fundo, font=('lvy 10 bold'), relief=RAISED, overrelief=RIDGE, command=lambda:entering_valures('pow'))\par
+b_pow.place(x=177,y=30)\par
+b_12 = Button(Frame_cientifica, text = "pi", width=6, height=1, bg=co10, fg=fundo, font=('lvy 10 bold'), relief=RAISED, overrelief=RIDGE, command=lambda:entering_valures('pi'))\par
+b_12.place(x=0,y=58)\par
+b_13 = Button(Frame_cientifica, text = ",", width=6, height=1, bg=co10, fg=fundo, font=('lvy 10 bold'), relief=RAISED, overrelief=RIDGE, command=lambda:entering_valures(','))\par
+b_13.place(x=59,y=58)\par
+b_14 = Button(Frame_cientifica, text = "(", width=6, height=1, bg=co10, fg=fundo, font=('lvy 10 bold'), relief=RAISED, overrelief=RIDGE, command=lambda:entering_valures('( '))\par
+b_14.place(x=118,y=58)\par
+b_15 = Button(Frame_cientifica, text = ")", width=6, height=1, bg=co10, fg=fundo, font=('lvy 10 bold'), relief=RAISED, overrelief=RIDGE, command=lambda:entering_valures(') '))\par
+b_15.place(x=177,y=58)\par
+b_1 = Button(Frame_quadros, text = "c", width=14, height=1, bg=cor4, fg=fundo, font=('lvy 10 bold'), relief=RAISED, overrelief=RIDGE, command=lambda:sream_clear())\par
+b_1.place(x=0,y=0)\par
+b_2 = Button(Frame_quadros, text = "%", width=6, height=1, bg=cor4, fg=fundo, font=('lvy 10 bold'), relief=RAISED, overrelief=RIDGE, command=lambda:entering_valures('%'))\par
+b_2.place(x=118,y=0)\par
+b_3 = Button(Frame_quadros, text = "/", width=6, height=1, bg=cor11, fg=fundo, font=('lvy 10 bold'), relief=RAISED, overrelief=RIDGE, command=lambda:entering_valures('/'))\par
+b_3.place(x=177,y=0)\par
+b_4 = Button(Frame_quadros, text = "7", width=6, height=1, bg=cor4, fg=fundo, font=('lvy 10 bold'), relief=RAISED, overrelief=RIDGE, command=lambda:entering_valures(7))\par
+b_4.place(x=0,y=29)\par
+b_5 = Button(Frame_quadros, text = "8", width=6, height=1, bg=cor4, fg=fundo, font=('lvy 10 bold'), relief=RAISED, overrelief=RIDGE, command=lambda:entering_valures(8))\par
+b_5.place(x=59,y=29)\par
+b_6 = Button(Frame_quadros, text = "9", width=6, height=1, bg=cor4, fg=fundo, font=('lvy 10 bold'), relief=RAISED, overrelief=RIDGE, command=lambda:entering_valures(9))\par
+b_6.place(x=118,y=29)\par
+b_7 = Button(Frame_quadros, text = "*", width=6, height=1, bg=cor11, fg=fundo, font=('lvy 10 bold'), relief=RAISED, overrelief=RIDGE, command=lambda:entering_valures('*'))\par
+b_7.place(x=177,y=29)\par
+b_8 = Button(Frame_quadros, text = "4", width=6, height=1, bg=cor4, fg=fundo, font=('lvy 10 bold'), relief=RAISED, overrelief=RIDGE, command=lambda:entering_valures(4))\par
+b_8.place(x=0,y=58)\par
+b_9 = Button(Frame_quadros, text = "5", width=6, height=1, bg=cor4, fg=fundo, font=('lvy 10 bold'), relief=RAISED, overrelief=RIDGE, command=lambda:entering_valures(5))\par
+b_9.place(x=59,y=58)\par
+b_10 = Button(Frame_quadros, text = "6", width=6, height=1, bg=cor4, fg=fundo, font=('lvy 10 bold'), relief=RAISED, overrelief=RIDGE, command=lambda:entering_valures(6))\par
+b_10.place(x=118,y=58)\par
+b_11 = Button(Frame_quadros, text = "-", width=6, height=1, bg=cor11, fg=fundo, font=('lvy 10 bold'), relief=RAISED, overrelief=RIDGE, command=lambda:entering_valures('-'))\par
+b_11.place(x=177,y=58)\par
+b_12 = Button(Frame_quadros, text = "1", width=6, height=1, bg=cor4, fg=fundo, font=('lvy 10 bold'), relief=RAISED, overrelief=RIDGE, command=lambda:entering_valures(1))\par
+b_12.place(x=0,y=87)\par
+b_13 = Button(Frame_quadros, text = "2", width=6, height=1, bg=cor4, fg=fundo, font=('lvy 10 bold'), relief=RAISED, overrelief=RIDGE, command=lambda:entering_valures(2))\par
+b_13.place(x=59,y=87)\par
+b_14= Button(Frame_quadros, text = "3", width=6, height=1, bg=cor4, fg=fundo, font=('lvy 10 bold'), relief=RAISED, overrelief=RIDGE, command=lambda:entering_valures(3))\par
+b_14.place(x=118,y=87)\par
+b_15= Button(Frame_quadros, text = "+", width=6, height=1, bg=cor11, fg=fundo, font=('lvy 10 bold'), relief=RAISED, overrelief=RIDGE, command=lambda:entering_valures("+"))\par
+b_15.place(x=177,y=87)\par
+b_16= Button(Frame_quadros, text = "0", width=14, height=1, bg=cor4, fg=fundo, font=('lvy 10 bold'), relief=RAISED, overrelief=RIDGE, command=lambda:entering_valures(0))\par
+b_16.place(x=0,y=116)\par
+b_17= Button(Frame_quadros, text = ".", width=6, height=1, bg=cor4, fg=fundo, font=('lvy 10 bold'), relief=RAISED, overrelief=RIDGE, command=lambda:entering_valures("."))\par
+b_17.place(x=118,y=116)\par
+b_18= Button(Frame_quadros, text = "=", width=6, height=1, bg=cor1, fg=fundo, font=('lvy 10 bold'), relief=RAISED, overrelief=RIDGE, command=lambda:calculate())\par
+b_18.place(x=177,y=116)\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+janela.mainloop()\par
+}
+ 
